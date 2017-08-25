@@ -147,6 +147,7 @@ $task_important_class = ($days_until_deadline <= 0 ? ' task--important' : '');
                         </td>
                     </tr>
                     <?php endif; ?>
+
                     <tr class="tasks__item task <?= $task_important_class ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
