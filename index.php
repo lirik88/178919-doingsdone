@@ -10,10 +10,13 @@ $task_deadline_ts = strtotime("+" . $days . " day midnight"); // метка вр
 $current_ts = strtotime('now midnight'); // текущая метка времени
 
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
-$date_deadline = null;
+$date_deadline = date("d.m.Y", $task_deadline_ts);
 
 // в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = null;
+$days_until_deadline = floor(($task_deadline_ts - $current_ts ) / 86400);
+
+// переменная содержащая класс, помечающий просроченное задание
+$task_important_class = ($days_until_deadline <= 0 ? ' task--important' : '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,7 +146,7 @@ $days_until_deadline = null;
                         </td>
                     </tr>
 
-                    <tr class="tasks__item task">
+                    <tr class="tasks__item task <?= $task_important_class ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox">
@@ -152,7 +155,7 @@ $days_until_deadline = null;
                         </td>
 
                         <td class="task__date">
-                            <!--выведите здесь дату выполнения задачи-->
+                            <?= $date_deadline ?>
                         </td>
 
                         <td class="task__controls">
