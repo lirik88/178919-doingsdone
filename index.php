@@ -129,10 +129,8 @@ $tasks_array = [['task-item' => 'Собеседование в IT компани
                 </div>
 
                 <table class="tasks">
-                   
                     <?php if(isset($tasks_array)): ?>
                         <?php foreach ($tasks_array as $k => $v): ?>
-
                             <tr class="tasks__item task <?= ($v['complete'] == 'yes') ? 'task--completed' : '' ?>">
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
@@ -140,16 +138,12 @@ $tasks_array = [['task-item' => 'Собеседование в IT компани
                                         <span class="checkbox__text"><?= $v['task-item'] ?></span>
                                     </label>
                                 </td>
-
                                 <td class="task__date">
                                     <?= $v['task-date'] ?>
                                 </td>
-
                             </tr>
-
                         <?php endforeach; ?>
                     <?php endif; ?>
-
                 </table>
             </main>
         </div>
