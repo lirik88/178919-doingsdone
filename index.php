@@ -28,6 +28,23 @@ $tasks_array = [['task-item' => 'Собеседование в IT компани
                 ['task-item' => 'Встреча с другом',                'task-date' => '22.04.2018', 'category' => 'Входящие',      'complete' => 'no'],
                 ['task-item' => 'Купить корм для кота',            'task-date' => 'Нет',        'category' => 'Домашние дела', 'complete' => 'no'],
                 ['task-item' => 'Заказать пиццу',                  'task-date' => 'Нет',        'category' => 'Домашние дела', 'complete' => 'no']];
+
+// функция для подсчета количества задач в проекте
+function countOfTasks($tasks_list, $name_project)
+{
+    $result = 0;
+    if ($name_project == 'Все') {
+        $result = count($tasks_list);
+    } else {
+        foreach ($tasks_list as $key => $value) {
+            if ($value['category'] == $name_project) {
+                $result++;
+            }
+        }
+    }
+    return $result;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +95,7 @@ $tasks_array = [['task-item' => 'Собеседование в IT компани
 
                             <li class="main-navigation__list-item <?= ($i == 0 ? 'main-navigation__list-item--active' : ''); ?>">
                                 <a class="main-navigation__list-item-link" href="#"><?= $projects_array[$i] ?></a>
-                                <span class="main-navigation__list-item-count">24</span>
+                                <span class="main-navigation__list-item-count"><?= countOfTasks($tasks_array, $projects_array[$i]); ?></span>
                             </li>
 
                             <?php endfor; ?>
