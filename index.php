@@ -48,7 +48,7 @@ function countOfTasks(array $tasks_list, string $name_project)
     return $result;
 }
 
-$main_content = renderTemplate('templates/index.php', $tasks_array);
+$main_content = renderTemplate('templates/index.php', ['tasks_array' => $tasks_array]);
 
 $page = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке!', 
                                                 'projects_array' => $projects_array, 

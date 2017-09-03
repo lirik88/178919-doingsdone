@@ -37,8 +37,8 @@
                 </div>
 
                 <table class="tasks">
-                    <?php if(isset($data_template)): ?>
-                        <?php foreach ($data_template as $k => $v): ?>
+                    <?php if(isset($tasks_array)): ?>
+                        <?php foreach ($tasks_array as $k => $v): ?>
                             <tr class="tasks__item task <?= ($v['complete'] == 'yes') ? 'task--completed' : '' ?>">
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">

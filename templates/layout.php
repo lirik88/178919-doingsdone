@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?= $data_template['title'] ?></title>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -42,12 +42,12 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
 
-                        <?php if(isset($data_template['projects_array'])): ?>
-                            <?php for ($i=0; $i < count($data_template['projects_array']); $i++): ?>
+                        <?php if(isset($projects_array)): ?>
+                            <?php for ($i=0; $i < count($projects_array); $i++): ?>
 
                             <li class="main-navigation__list-item <?= ($i == 0 ? 'main-navigation__list-item--active' : ''); ?>">
-                                <a class="main-navigation__list-item-link" href="#"><?= $data_template['projects_array'][$i] ?></a>
-                                <span class="main-navigation__list-item-count"><?= countOfTasks($data_template['tasks_array'], $data_template['projects_array'][$i]); ?></span>
+                                <a class="main-navigation__list-item-link" href="#"><?= $projects_array[$i] ?></a>
+                                <span class="main-navigation__list-item-count"><?= countOfTasks($tasks_array, $projects_array[$i]); ?></span>
                             </li>
 
                             <?php endfor; ?>
@@ -59,7 +59,7 @@
                 <a class="button button--transparent button--plus content__side-button" href="#">Добавить проект</a>
             </section>
 
-            <?= $data_template['main_content'] ?>
+            <?= $main_content ?>
 
         </div>
     </div>

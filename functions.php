@@ -8,6 +8,7 @@ function renderTemplate(string $path_template, array $data_template)
 	else
 	{
 		ob_start();
+		extract($data_template);
 		include($path_template);
 		$html = ob_get_contents();
 		ob_end_clean();
