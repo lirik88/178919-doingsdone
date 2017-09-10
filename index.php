@@ -2,27 +2,9 @@
 
 require_once('functions.php');
 
-// показывать или нет выполненные задачи
-$show_complete_tasks = rand(0, 1);
-
-// устанавливаем часовой пояс в Московское время
-date_default_timezone_set('Europe/Moscow');
-
-$days = rand(-3, 3);
-$task_deadline_ts = strtotime("+" . $days . " day midnight"); // метка времени даты выполнения задачи
-$current_ts = strtotime('now midnight'); // текущая метка времени
-
-// запишите сюда дату выполнения задачи в формате дд.мм.гггг
-$date_deadline = date("d.m.Y", $task_deadline_ts);
-
-// в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = floor(($task_deadline_ts - $current_ts ) / 86400);
-
-// переменная содержащая класс, помечающий просроченное задание
-$task_important_class = ($days_until_deadline <= 0 ? ' task--important' : '');
-
 // массив проектов
 $projects_array = ['Все', 'Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
+
 
 //ассоциативный массив с задачами
 $tasks_array = [['task-item' => 'Собеседование в IT компании',     'task-date' => '01.06.2018', 'category' => 'Работа',        'complete' => 'no'],
@@ -48,9 +30,27 @@ function countOfTasks(array $tasks_list, string $name_project)
     return $result;
 }
 
-$main_content = renderTemplate('templates/index.php', ['tasks_array' => $tasks_array]);
 
-$page = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке!', 
+
+ function getTasks(string $cat, array $projects_array)
+{
+    if (isset($_GET['project'])) {
+        $name_cat = $projects_array[$_GET['project']];
+        if ($name_cat === $cat) {
+            return true;
+        } 
+    }
+    else if (!isset($_GET['project'])) {
+        return true;
+    }
+    return false;
+}
+
+
+$main_content = renderTemplate('templates/index.php', ['projects_array' => $projects_array, 
+                                                       'tasks_array' => $tasks_array]);
+
+$page = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке!',
                                                 'projects_array' => $projects_array, 
                                                 'tasks_array' => $tasks_array, 
                                                 'main_content' => $main_content]);

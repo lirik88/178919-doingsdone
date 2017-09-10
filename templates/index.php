@@ -39,17 +39,19 @@
                 <table class="tasks">
                     <?php if(isset($tasks_array)): ?>
                         <?php foreach ($tasks_array as $k => $v): ?>
-                            <tr class="tasks__item task <?= ($v['complete'] == 'yes') ? 'task--completed' : '' ?>">
-                                <td class="task__select">
-                                    <label class="checkbox task__checkbox">
-                                        <input class="checkbox__input visually-hidden" type="checkbox">
-                                        <span class="checkbox__text"><?= htmlentities($v['task-item']) ?></span>
-                                    </label>
-                                </td>
-                                <td class="task__date">
-                                    <?= htmlentities($v['task-date']) ?>
-                                </td>
-                            </tr>
+                            <?php if(getTasks($v['category'], $projects_array)): ?>
+                                <tr class="tasks__item task <?= ($v['complete'] == 'yes') ? 'task--completed' : '' ?>">
+                                    <td class="task__select">
+                                        <label class="checkbox task__checkbox">
+                                            <input class="checkbox__input visually-hidden" type="checkbox">
+                                            <span class="checkbox__text"><?= htmlentities($v['task-item']) ?></span>
+                                        </label>
+                                    </td>
+                                    <td class="task__date">
+                                        <?= htmlentities($v['task-date']) ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </table>

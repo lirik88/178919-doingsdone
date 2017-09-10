@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['project'])){
+    if (!array_key_exists($_GET['project'], $projects_array)){
+        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+        exit(); 
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +54,7 @@
                             <?php for ($i=0; $i < count($projects_array); $i++): ?>
 
                             <li class="main-navigation__list-item <?= ($i == 0 ? 'main-navigation__list-item--active' : ''); ?>">
-                                <a class="main-navigation__list-item-link" href="#"><?= $projects_array[$i] ?></a>
+                                <a class="main-navigation__list-item-link" href="index.php<?= ($i == 0 ? '' : "?project=$i") ?>"><?= $projects_array[$i] ?></a>
                                 <span class="main-navigation__list-item-count"><?= countOfTasks($tasks_array, $projects_array[$i]); ?></span>
                             </li>
 
